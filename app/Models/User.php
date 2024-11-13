@@ -2,17 +2,6 @@
 
 namespace App\Models;
 
-<<<<<<< HEAD
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
-{
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-=======
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,7 +15,6 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
->>>>>>> 1ed05d27a7cf184078f0999c715826d77a53e192
 
     /**
      * The attributes that are mass assignable.
@@ -37,11 +25,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-<<<<<<< HEAD
-        'profile_image',
-        'bio',
-=======
->>>>>>> 1ed05d27a7cf184078f0999c715826d77a53e192
     ];
 
     /**
@@ -66,17 +49,4 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-<<<<<<< HEAD
-
-    public function userPlants()
-    {
-        return $this->hasMany(UserPlant::class);
-    }
-
-    public function diagnosticHistories()
-    {
-        return $this->hasMany(DiagnosticHistory::class);
-    }
-=======
->>>>>>> 1ed05d27a7cf184078f0999c715826d77a53e192
 }
