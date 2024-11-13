@@ -25,6 +25,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'profile_image',
+        'bio',
     ];
 
     /**
@@ -48,5 +50,15 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function userPlants()
+    {
+        return $this->hasMany(UserPlant::class);
+    }
+
+    public function diagnosticHistories()
+    {
+        return $this->hasMany(DiagnosticHistory::class);
     }
 }
