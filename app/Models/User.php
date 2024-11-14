@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,12 +53,12 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function userPlants()
+    public function userPlants(): HasMany
     {
         return $this->hasMany(UserPlant::class);
     }
 
-    public function diagnosticHistories()
+    public function diagnosticHistories(): HasMany
     {
         return $this->hasMany(DiagnosticHistory::class);
     }
