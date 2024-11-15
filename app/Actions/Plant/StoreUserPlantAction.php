@@ -2,18 +2,24 @@
 
 namespace App\Actions\Plant;
 
+use App\Models\UserPlant;
 use Holiq\ActionData\Foundation\Action;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 readonly class StoreUserPlantAction extends Action
 {
-    public function execute(UserPlantData $data)
+    /**
+     * @throws \Throwable
+     */
+    public function execute(UserPlantData $data): UserPlant
     {
-    /** @var \App\Models\User $user */
-    $user = auth()->user();
-
-    if ($user->id !== $data->user_id) {
-        abort(403, 'Unauthorized action.');
-    }
+        throw_unless(
+            condition: Auth::check() && Auth::user()->id === $data->user_id,
+            exception: ValidationException::withMessages([
+                'user_id' => trans('auth.unauthorized'),
+            ])
+        );
 
         return UserPlant::create([
             'user_id' => $data->user_id,
