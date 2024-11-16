@@ -10,3 +10,4 @@ Route::get(uri: '/', action: function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/hidroqu.php';

@@ -22,9 +22,8 @@ class StoreUserPlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer|exists:users,id', 
             'plant_id' => 'required|integer|exists:plants,id',
-            'planting_date' => 'required|date', 
+            'planting_date' => 'required|date',
             'notes' => 'nullable|string|max:255',
         ];
     }
