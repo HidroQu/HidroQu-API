@@ -1,39 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Plant;
+namespace App\Actions\Plant;
 
-use App\Http\Controllers\Controller;
-use App\Actions\Plant\StoreUserPlantAction;
-use App\Concerns\ApiResponse;
 use App\DataTransferObjects\Plant\UserPlantData;
-use App\Http\Requests\Plant\StoreUserPlantRequest;
-use Illuminate\Http\JsonResponse;
+use App\Models\UserPlant;
+use Holiq\ActionData\Foundation\Action;
 
-class StoreUserPlantController extends Controller
+readonly class StoreUserPlantAction extends Action
 {
-    use ApiResponse;
-
     /**
-     * Handle the incoming request.
+     * @return array<string, mixed>
      */
-    public function __invoke(StoreUserPlantRequest $request): JsonResponse
+    public function execute(UserPlantData $data): array
     {
-        try {
-            // Resolve the data transfer object
-            $data = UserPlantData::resolve($request->validated());
-
-            // Execute the action
-            $userPlant = StoreUserPlantAction::resolve()->execute($data);
-
-            return $this->resolveSuccessResponse(
-                message: 'User plant stored successfully.',
-                data: ['userPlant' => $userPlant]
-            );
-        } catch (\Exception $e) {
-            return $this->resolveFailedResponse(
-                message: 'Failed to store user plant.',
-                errors: ['exception' => $e->getMessage()]
-            );
-        }
+        return UserPlant::query()->create($data->toArray())->toArray();
     }
 }
