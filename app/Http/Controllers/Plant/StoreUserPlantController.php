@@ -1,18 +1,35 @@
 <?php
 
-namespace App\Actions\Plant;
+namespace App\Http\Controllers\Plant;
 
+use App\Actions\Plant\StoreUserPlantAction;
+use App\Concerns\ApiResponse;
 use App\DataTransferObjects\Plant\UserPlantData;
-use App\Models\UserPlant;
-use Holiq\ActionData\Foundation\Action;
+use App\Enums\HttpStatus;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Plant\StoreUserPlantRequest;
+use Illuminate\Http\JsonResponse;
 
-readonly class StoreUserPlantAction extends Action
+class StoreUserPlantController extends Controller
 {
+    use ApiResponse;
+
     /**
-     * @return array<string, mixed>
+     * @throws \CuyZ\Valinor\Mapper\MappingError
      */
-    public function execute(UserPlantData $data): array
+    public function __invoke(StoreUserPlantRequest $request): JsonResponse
     {
-        return UserPlant::query()->create($data->toArray())->toArray();
+        $data = StoreUserPlantAction::resolve()->execute(
+            data: UserPlantData::resolve(data: [
+                ...$request->validated(),
+                'user_id' => auth()->id(),
+            ])
+        );
+
+        return $this->resolveSuccessResponse(
+            message: 'Plant created successfully',
+            data: $data,
+            status: HttpStatus::Created
+        );
     }
 }
