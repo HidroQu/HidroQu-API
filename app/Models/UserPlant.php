@@ -10,7 +10,8 @@ class UserPlant extends Model
         'user_id',
         'plant_id',
         'planting_date',
-        'notes'];
+        'notes',
+    ];
 
     public function user()
     {
