@@ -2,16 +2,28 @@
 
 namespace App\Http\Controllers\Plant;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Actions\Plant\ListPlantAction;
+use App\Concerns\ApiResponse;
+use App\DataTransferObjects\Plant\ListPlantData;
+use App\Http\Requests\Plant\ListPlantRequest;
+use Illuminate\Http\JsonResponse;
 
-class ListPlantController extends Controller
+class ListPlantController
 {
+    use ApiResponse;
+
     /**
-     * Handle the incoming request.
+     * @throws \Throwable
      */
-    public function __invoke(Request $request)
+    public function __invoke(ListPlantRequest $request): JsonResponse
     {
-        //
+        $data = ListPlantAction::resolve()->execute(
+            data: ListPlantData::resolve(data: $request->validated())
+        );
+
+        return $this->resolveSuccessResponse(
+            message: 'Plants retrieved successfully',
+            data: $data,
+        );
     }
 }

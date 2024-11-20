@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers\Plant;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Actions\Plant\ListUserPlantAction;
+use App\Concerns\ApiResponse;
+use App\Http\Requests\Plant\ListUserPlantRequest;
+use Illuminate\Http\JsonResponse;
 
-class ListUserPlantController extends Controller
+class ListUserPlantController
 {
+    use ApiResponse;
+
     /**
-     * Handle the incoming request.
+     * @throws \Throwable
      */
-    public function __invoke(Request $request)
+    public function __invoke(ListUserPlantRequest $request): JsonResponse
     {
-        //
+        $data = ListUserPlantAction::resolve()->execute(
+            data: $request->validated() 
+        );
+
+        return $this->resolveSuccessResponse(
+            message: 'Successfully fetched list of user plants with plant details',
+            data: $data
+        );
     }
 }

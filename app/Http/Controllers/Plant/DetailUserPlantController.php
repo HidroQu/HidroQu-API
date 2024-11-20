@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers\Plant;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Actions\Plant\DetailUserPlantAction;
+use App\Concerns\ApiResponse;
+use App\Http\Requests\Plant\DetailUserPlantRequest;
+use Illuminate\Http\JsonResponse;
 
-class DetailUserPlantController extends Controller
+class DetailUserPlantController
 {
+    use ApiResponse;
+
     /**
-     * Handle the incoming request.
+     * @throws \Throwable
      */
-    public function __invoke(Request $request)
+    public function __invoke(DetailUserPlantRequest $request): JsonResponse
     {
-        //
+        $data = DetailUserPlantAction::resolve()->execute(
+            data: $request->validated() 
+        );
+
+        return $this->resolveSuccessResponse(
+            message: 'Successfully fetched user plant details',
+            data: $data
+        );
     }
 }
