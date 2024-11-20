@@ -8,9 +8,11 @@ class Diagnostic extends Model
 {
     protected $fillable = [
         'disease_name',
+        'image_disease',
         'indication',
         'cause',
-        'solution'];
+        'solution',
+    ];
 
     public function diagnosticHistories()
     {

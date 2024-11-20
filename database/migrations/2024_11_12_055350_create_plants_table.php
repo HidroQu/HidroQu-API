@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('latin_name');
-            $table->string('image_plant')->nullable();
-            $table->text('description')->nullable();
-            $table->text('planting_guide')->nullable();
-            $table->text('fertilizer_type')->nullable();
-            $table->string('fun_fact')->nullable();
+            $table->text('image_plant');
+            $table->text('description');
+            $table->text('planting_guide');
+            $table->text('fertilizer_type');
+            $table->string('fun_fact');
             $table->timestamps();
         });
     }

@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers\Plant;
 
-use App\Actions\Plant\ListUserPlantAction;
 use App\Concerns\ApiResponse;
-use App\Http\Requests\Plant\ListUserPlantRequest;
+use App\Models\UserPlant;
 use Illuminate\Http\JsonResponse;
 
 class ListUserPlantController
 {
     use ApiResponse;
 
-    /**
-     * @throws \Throwable
-     */
-    public function __invoke(ListUserPlantRequest $request): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        $data = ListUserPlantAction::resolve()->execute(
-            data: $request->validated() 
-        );
+        $data = UserPlant::query()->with(['plant'])->where('user_id', auth()->id())->paginate(10);
 
         return $this->resolveSuccessResponse(
             message: 'Successfully fetched list of user plants with plant details',
-            data: $data
+            data: $data->toArray(),
         );
     }
 }

@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers\Plant;
 
-use App\Actions\Plant\ListPlantAction;
 use App\Concerns\ApiResponse;
-use App\DataTransferObjects\Plant\ListPlantData;
-use App\Http\Requests\Plant\ListPlantRequest;
+use App\Models\Plant;
 use Illuminate\Http\JsonResponse;
 
 class ListPlantController
 {
     use ApiResponse;
 
-    /**
-     * @throws \Throwable
-     */
-    public function __invoke(ListPlantRequest $request): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        $data = ListPlantAction::resolve()->execute(
-            data: ListPlantData::resolve(data: $request->validated())
-        );
+        $data = Plant::query()->get();
 
         return $this->resolveSuccessResponse(
             message: 'Plants retrieved successfully',
