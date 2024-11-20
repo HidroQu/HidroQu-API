@@ -10,7 +10,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'plants'], function () {
         Route::get('/', ListPlantController::class);
         Route::post('/store', StoreUserPlantController::class);
-        Route::get('/my-plant', ListUserPlantController::class);
-        Route::get('/my-plant/{user_plant:id}', DetailUserPlantController::class);
+        Route::get('/my-plants', ListUserPlantController::class);
+        Route::get('/my-plants/{user_plant:id}', DetailUserPlantController::class);
     });
 });
