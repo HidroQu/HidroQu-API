@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Comment;
+namespace App\Http\Controllers\Community;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StoreCommentController extends Controller
+class ListUserCommunityController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
         //
     }
