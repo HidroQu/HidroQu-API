@@ -15,7 +15,7 @@ class PlantSeeder extends Seeder
         Plant::create([
             'name' => 'Timun',
             'latin_name' => 'Cucumis sativus',
-            'image_plant' => 'storage\app\public\images\timun.jpg',
+            'icon_plant' => 'https://storage.googleapis.com/hidroqu/plants/icons/timun.svg',
             'description' => 'Tanaman sayur merambat yang sering digunakan dalam salad.',
             'planting_guide' => 'Tanam di tempat yang banyak sinar matahari dan tanah yang subur.',
             'fertilizer_type' => 'Pupuk kompos atau kandang setiap 2 minggu.',
@@ -25,7 +25,7 @@ class PlantSeeder extends Seeder
         Plant::create([
             'name' => 'Kangkung',
             'latin_name' => 'Ipomoea aquatica',
-            'image_plant' => 'storage\app\public\images\kangkung.jpg',
+            'icon_plant' => 'https://storage.googleapis.com/hidroqu/plants/icons/kangkung.svg',
             'description' => 'Sayuran air yang populer dalam masakan Asia.',
             'planting_guide' => 'Tanam di tanah yang lembap dan tempat dengan sinar matahari parsial.',
             'fertilizer_type' => 'Pupuk cair atau kompos setiap bulan.',
@@ -35,7 +35,7 @@ class PlantSeeder extends Seeder
         Plant::create([
             'name' => 'Selada',
             'latin_name' => 'Lactuca sativa',
-            'image_plant' => 'storage\app\public\images\selada.jpg',
+            'icon_plant' => 'https://storage.googleapis.com/hidroqu/plants/icons/selada.svg',
             'description' => 'Sayuran daun yang biasa digunakan dalam salad segar.',
             'planting_guide' => 'Tanam di tanah yang gembur dan tempat dengan sinar matahari parsial.',
             'fertilizer_type' => 'Pupuk kompos atau pupuk cair setiap 2 minggu.',
@@ -45,7 +45,7 @@ class PlantSeeder extends Seeder
         Plant::create([
             'name' => 'Tomat',
             'latin_name' => 'Solanum lycopersicum',
-            'image_plant' => 'storage\app\public\images\tomat.jpg',
+            'icon_plant' => 'https://storage.googleapis.com/hidroqu/plants/icons/tomat.svg',
             'description' => 'Tanaman buah yang sering digunakan dalam berbagai masakan.',
             'planting_guide' => 'Tanam di tanah yang gembur dan beri sinar matahari langsung setiap hari.',
             'fertilizer_type' => 'Pupuk kompos atau pupuk organik setiap 2 minggu.',
@@ -55,7 +55,7 @@ class PlantSeeder extends Seeder
         Plant::create([
             'name' => 'Bayam',
             'latin_name' => 'Spinacia oleracea',
-            'image_plant' => 'storage\app\public\images\bayam.jpg',
+            'icon_plant' => 'https://storage.googleapis.com/hidroqu/plants/icons/bayam.svg',
             'description' => 'Sayuran hijau yang kaya akan zat besi dan vitamin.',
             'planting_guide' => 'Tanam di tanah yang subur dan tempat dengan sinar matahari penuh.',
             'fertilizer_type' => 'Pupuk kompos atau pupuk kandang setiap 3 minggu.',
