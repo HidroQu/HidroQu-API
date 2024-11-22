@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Community extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'content',
         'image',
         'user_id',
@@ -17,6 +16,7 @@ class Community extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
