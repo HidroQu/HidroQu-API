@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 
 class DetailCommunityController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Community $community)
+    use ApiResponse;
+
+    public function __invoke(Community $community): JsonResponse
     {
-        //
+        $community->load(['user', 'comments']);
+
+        return $this->resolveSuccessResponse(
+            message: 'Successfully fetched community details',
+            data: $community->toArray()
+        );
     }
 }

@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers\Community;
 
+use App\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Community;
+use Illuminate\Http\JsonResponse;
 
 class ListCommunityController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke()
+    use ApiResponse;
+
+    public function __invoke(): JsonResponse
     {
-        //
+        $data = Community::query()->with(['user', 'comments'])->get();
+
+        return $this->resolveSuccessResponse(
+            message: 'Community retrieved successfully',
+            data: $data->toArray(), 
+        );
     }
 }
+
