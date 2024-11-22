@@ -13,12 +13,11 @@ class ListCommunityController extends Controller
 
     public function __invoke(): JsonResponse
     {
-        $data = Community::query()->with(['user', 'comments'])->get();
+        $data = Community::query()->with(['user'])->withCount('comments')->paginate(10);
 
         return $this->resolveSuccessResponse(
             message: 'Community retrieved successfully',
-            data: $data->toArray(), 
+            data: $data->toArray(),
         );
     }
 }
-

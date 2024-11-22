@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Community;
 
+use App\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Community;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class DetailCommunityController extends Controller
 {
@@ -12,7 +13,7 @@ class DetailCommunityController extends Controller
 
     public function __invoke(Community $community): JsonResponse
     {
-        $community->load(['user', 'comments']);
+        $community->load(['user', 'getComments.user', 'getComments.replies.user']);
 
         return $this->resolveSuccessResponse(
             message: 'Successfully fetched community details',

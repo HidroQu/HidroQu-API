@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Community extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'content',
         'image',
@@ -20,5 +23,10 @@ class Community extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function getComments()
+    {
+        return $this->comments()->whereNull('comment_id');
     }
 }
