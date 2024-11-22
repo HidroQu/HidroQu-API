@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Community;
 
+use App\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Community;
-use Illuminate\Http\Request;
 
 class DetailCommunityController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
+    use ApiResponse;
+
     public function __invoke(Community $community)
     {
-        //
+        $community->load('comments.replies');
+
+        return $this->resolveSuccessResponse('success', $community->toArray());
     }
 }
