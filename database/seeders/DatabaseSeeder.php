@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleType;
 use App\Models\Comment;
 use App\Models\Community;
 use App\Models\DiagnosticHistory;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PlantSeeder::class,
             DiagnosticSeeder::class,
+            ShieldSeeder::class,
         ]);
 
         // Create a specific user
@@ -26,10 +28,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'HidroQu',
             'email' => 'hidroqu@gmail.com',
             'password' => bcrypt('password'),
-        ]);
+        ])->syncRoles(RoleType::Admin);
 
         // Create additional users
-        $users = User::factory(10)->create();
+        $users = User::factory(10)->create()->each(function ($user) {
+            $user->syncRoles(RoleType::User);
+        });
 
         // Cache timestamps
         $now = now();

@@ -3,6 +3,7 @@
 namespace App\Actions\Auth;
 
 use App\DataTransferObjects\Auth\RegisterData;
+use App\Enums\RoleType;
 use App\Models\User;
 use Holiq\ActionData\Foundation\Action;
 use Illuminate\Auth\Events\Registered;
@@ -15,6 +16,8 @@ readonly class RegisterAction extends Action
     public function execute(RegisterData $data): array
     {
         $user = User::query()->create($data->toArray());
+
+        $user->syncRoles(RoleType::User);
 
         event(new Registered($user));
 
