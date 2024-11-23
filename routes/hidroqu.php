@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Comment\StoreCommentController;
 use App\Http\Controllers\Community\DetailCommunityController;
 use App\Http\Controllers\Community\ListCommunityController;
 use App\Http\Controllers\Community\StoreCommunityController;
@@ -22,6 +23,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'communities'], function () {
         Route::get('/', ListCommunityController::class);
         Route::get('/{community:id}', DetailCommunityController::class);
+        Route::post('/{community:id}/comment', StoreCommentController::class);
         Route::post('/store', StoreCommunityController::class);
         Route::get('/my-posts', ListCommunityController::class);
     });

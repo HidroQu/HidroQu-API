@@ -14,7 +14,7 @@ class Comment extends Model
         'comment_id',
         'user_id',
         'content',
-        'images',
+        'image',
     ];
 
     public function community()

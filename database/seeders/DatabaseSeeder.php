@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
                 'comment_id' => null,
                 'user_id' => 2,
                 'content' => 'Mantap pak, saya juga pakai',
-                'images' => '',
+                'image' => '',
                 'created_at' => $now,
             ],
             [
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
                 'comment_id' => null,
                 'user_id' => 4,
                 'content' => 'Thanks infonya pak',
-                'images' => '',
+                'image' => '',
                 'created_at' => $now,
             ],
             [
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
                 'comment_id' => null,
                 'user_id' => 5,
                 'content' => 'Sama pupuk ABC bagus mana pak?',
-                'images' => 'https://www.berkebun.net/wp-content/uploads/2023/05/pupuk-npk-phonska-4.jpg',
+                'image' => 'https://www.berkebun.net/wp-content/uploads/2023/05/pupuk-npk-phonska-4.jpg',
                 'created_at' => $now,
             ],
             [
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
                 'comment_id' => 2,
                 'user_id' => 2,
                 'content' => 'Sama sama pak',
-                'images' => '',
+                'image' => '',
                 'created_at' => $now,
             ],
             [
@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
                 'comment_id' => 3,
                 'user_id' => 2,
                 'content' => 'Bagus ini pak',
-                'images' => '',
+                'image' => '',
                 'created_at' => $now,
             ],
             [
@@ -115,7 +115,7 @@ class DatabaseSeeder extends Seeder
                 'comment_id' => 5,
                 'user_id' => 5,
                 'content' => 'Oke pak',
-                'images' => '',
+                'image' => '',
                 'created_at' => $now,
             ],
         ]);

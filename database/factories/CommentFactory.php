@@ -20,7 +20,7 @@ class CommentFactory extends Factory
             'community_id' => '',
             'user_id' => '',
             'content' => $this->faker->paragraph(),
-            'images' => '',
+            'image' => '',
         ];
     }
 }
