@@ -8,7 +8,7 @@ use Illuminate\Http\UploadedFile;
 
 readonly class UploadImageAction extends Action
 {
-    public function execute(?UploadedFile $file, string $path = 'community'): ?string
+    public function execute(?UploadedFile $file, string $path = 'communities'): ?string
     {
         if (is_null($file)) {
             return null;
