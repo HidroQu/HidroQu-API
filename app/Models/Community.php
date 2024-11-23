@@ -10,6 +10,7 @@ class Community extends Model
     use HasFactory;
 
     protected $fillable = [
+        'title',
         'content',
         'image',
         'user_id',

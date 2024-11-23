@@ -18,6 +18,7 @@ class CommunityFactory extends Factory
     public function definition(): array
     {
         return [
+            'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(),
             'image' => '',
             'user_id' => User::query()->inRandomOrder()->first()->id,

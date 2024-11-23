@@ -61,6 +61,7 @@ class DatabaseSeeder extends Seeder
 
         // Insert a specific Community post
         $community = Community::create([
+            'title' => 'Rekomendasi pupuk ajaib serba guna auto tumbuh dalam semalam',
             'content' => 'Pupuk Super Grow adalah solusi tepat untuk tanaman Anda yang membutuhkan nutrisi ekstra. Dengan kandungan NPK yang seimbang, pupuk ini membantu mempercepat pertumbuhan akar dan daun, serta meningkatkan kualitas buah dan bunga. Cocok digunakan untuk berbagai jenis tanaman, baik di pekarangan rumah, kebun, maupun taman.',
             'image' => 'https://saprotan-utama.com/wp-content/uploads/2021/06/Pupuk_NPK.jpg',
             'user_id' => $users->random()->id,
