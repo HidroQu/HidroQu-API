@@ -29,7 +29,7 @@ class StoreCommentController extends Controller
                 data: [
                     ...$request->validated(),
                     'community_id' => $community->id,
-                    'user_id' => 4, //auth()->id(),
+                    'user_id' => auth()->id(),
                     'image' => UploadImageAction::resolve()->execute($image, 'comments'),
                 ]
             ),
