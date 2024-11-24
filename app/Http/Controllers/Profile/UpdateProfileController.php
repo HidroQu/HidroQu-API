@@ -29,7 +29,7 @@ class UpdateProfileController extends Controller
             data: ProfileData::resolve(
                 data: [
                     ...$request->validated(),
-                    'photo' => UploadImageAction::resolve()->execute($image),
+                    'photo' => UploadImageAction::resolve()->execute($image, 'profiles'),
                 ]
             ),
             user: $user
