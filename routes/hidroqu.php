@@ -9,6 +9,8 @@ use App\Http\Controllers\Plant\DetailUserPlantController;
 use App\Http\Controllers\Plant\ListPlantController;
 use App\Http\Controllers\Plant\ListUserPlantController;
 use App\Http\Controllers\Plant\StoreUserPlantController;
+use App\Http\Controllers\Profile\DetailProfileController;
+use App\Http\Controllers\Profile\UpdateProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -26,5 +28,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/{community:id}/comment', StoreCommentController::class);
         Route::post('/store', StoreCommunityController::class);
         Route::get('/my-posts', ListCommunityController::class);
+    });
+
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', DetailProfileController::class);
+        Route::put('/update', UpdateProfileController::class);
     });
 });
