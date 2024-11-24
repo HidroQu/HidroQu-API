@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -66,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return Attribute::make(
             get: fn ($value) => $value,
-            set: fn ($value) => empty($value) ? $this->password : $value,
+            set: fn ($value) => empty($value) ? $this->password : Hash::make($value),
         );
     }
 
