@@ -8,6 +8,7 @@ class Diagnostic extends Model
 {
     protected $fillable = [
         'disease_name',
+        'disease_label',
         'image_disease',
         'indication',
         'cause',

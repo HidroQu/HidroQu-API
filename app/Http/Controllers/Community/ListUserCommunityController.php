@@ -21,5 +21,3 @@ class ListUserCommunityController extends Controller
         );
     }
 }
-
-

@@ -9,11 +9,12 @@ class Plant extends Model
     protected $fillable = [
         'name',
         'latin_name',
-        'image_plant',
+        'icon_plant',
         'description',
         'planting_guide',
         'fertilizer_type',
-        'fun_fact'];
+        'fun_fact',
+    ];
 
     public function userPlants()
     {

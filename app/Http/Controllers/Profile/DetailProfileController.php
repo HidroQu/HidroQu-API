@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Community;
+namespace App\Http\Controllers\Profile;
 
 use App\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Models\Community;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
-class ListCommunityController extends Controller
+class DetailProfileController extends Controller
 {
     use ApiResponse;
 
     public function __invoke(): JsonResponse
     {
-        $data = Community::query()->with(['user'])->withCount('comments')->paginate(10);
+        $data = User::query()->findOrFail(auth()->id());
 
         return $this->resolveSuccessResponse(
-            message: 'Community retrieved successfully',
+            message: 'Success',
             data: $data->toArray(),
         );
     }

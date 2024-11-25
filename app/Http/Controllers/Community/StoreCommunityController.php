@@ -2,64 +2,39 @@
 
 namespace App\Http\Controllers\Community;
 
+use App\Actions\Community\StoreCommunityAction;
+use App\Actions\UploadImageAction;
+use App\Concerns\ApiResponse;
+use App\DataTransferObjects\Community\CommunityData;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Community\StoreCommunityRequest;
+use Illuminate\Http\JsonResponse;
 
 class StoreCommunityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+    use ApiResponse;
 
     /**
-     * Show the form for creating a new resource.
+     * @throws \CuyZ\Valinor\Mapper\MappingError
      */
-    public function create()
+    public function __invoke(StoreCommunityRequest $request): JsonResponse
     {
-        //
-    }
+        /** @var \Illuminate\Http\UploadedFile | null $image */
+        $image = $request->file('image');
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $data = StoreCommunityAction::resolve()->execute(
+            data: CommunityData::resolve(
+                data: [
+                    ...$request->validated(),
+                    'user_id' => auth()->id(),
+                    'image' => UploadImageAction::resolve()->execute($image),
+                ]
+            ),
+        );
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return $this->resolveSuccessResponse(
+            message: 'Community has been created.',
+            data: $data,
+        );
     }
 }

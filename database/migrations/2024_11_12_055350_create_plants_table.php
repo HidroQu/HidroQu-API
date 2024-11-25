@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('latin_name');
-            $table->text('image_plant');
+            $table->string('icon_plant');
             $table->text('description');
             $table->text('planting_guide');
             $table->text('fertilizer_type');

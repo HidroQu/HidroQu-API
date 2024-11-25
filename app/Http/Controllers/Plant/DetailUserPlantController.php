@@ -12,7 +12,7 @@ class DetailUserPlantController
 
     public function __invoke(UserPlant $userPlant): JsonResponse
     {
-        $userPlant->load(['plant', 'user', 'diagnosticHistories']);
+        $userPlant->load(['plant', 'user', 'diagnosticHistories.diagnostic']);
 
         return $this->resolveSuccessResponse(
             message: 'Successfully fetched user plant details',

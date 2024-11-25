@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('diagnostics', function (Blueprint $table) {
             $table->id();
             $table->string('disease_name');
+            $table->string('disease_label');
             $table->text('image_disease');
             $table->text('indication');
             $table->text('cause');

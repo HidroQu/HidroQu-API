@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Community extends Model
 {
-    protected $fillable=[
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
         'content',
         'image',
         'user_id',
@@ -17,8 +20,14 @@ class Community extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function getComments()
+    {
+        return $this->comments()->whereNull('comment_id');
     }
 }
