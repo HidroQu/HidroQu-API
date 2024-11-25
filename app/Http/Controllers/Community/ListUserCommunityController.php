@@ -6,14 +6,21 @@ use App\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Community;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ListUserCommunityController extends Controller
 {
     use ApiResponse;
 
-    public function __invoke(): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
-        $data = Community::query()->with(['user', 'comments'])->where('user_id', auth()->id())->paginate(10);
+        $communities = Community::query()->with(['user'])->withCount('comments')->where('user_id', auth()->id());
+
+        if ($request->filled('search')) {
+            $communities->where('title', 'like', '%'.$request->search.'%');
+        }
+
+        $data = $communities->paginate(10);
 
         return $this->resolveSuccessResponse(
             message: 'Successfully fetched list of user communities',

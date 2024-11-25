@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\Community;
+namespace App\Http\Controllers\Article;
 
 use App\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Models\Community;
+use App\Models\Article;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ListCommunityController extends Controller
+class ListArticleController extends Controller
 {
     use ApiResponse;
 
     public function __invoke(Request $request): JsonResponse
     {
-        $communities = Community::query()->with(['user'])->withCount('comments');
+        $articles = Article::query()->with(['user'])->latest();
 
         if ($request->filled('search')) {
-            $communities->where('title', 'like', '%'.$request->search.'%');
+            $articles->where('title', 'like', '%'.$request->search.'%');
         }
 
-        $data = $communities->paginate(10);
+        $data = $articles->paginate(10);
 
         return $this->resolveSuccessResponse(
-            message: 'Community retrieved successfully',
+            message: 'Success get list article',
             data: $data->toArray(),
         );
     }

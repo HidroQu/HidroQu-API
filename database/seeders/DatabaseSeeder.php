@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Enums\RoleType;
 use App\Models\Comment;
 use App\Models\Community;
@@ -145,5 +146,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             });
         });
+
+        Article::query()->insert(Article::factory(20)->raw());
     }
 }
