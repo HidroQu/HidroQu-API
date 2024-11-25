@@ -25,7 +25,7 @@ class UpdateProfileRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'bio' => 'required|string|max:255',
-            'photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'password' => 'nullable|string|min:6|confirmed',
         ];
     }

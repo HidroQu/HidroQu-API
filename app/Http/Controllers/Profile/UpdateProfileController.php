@@ -22,14 +22,14 @@ class UpdateProfileController extends Controller
         /** @var \App\Models\User $user */
         $user = auth()->user();
 
-        /** @var \Illuminate\Http\UploadedFile | null $image */
-        $image = $request->file('image');
+        /** @var \Illuminate\Http\UploadedFile | null $photo */
+        $photo = $request->file('photo');
 
         $data = UpdateProfileAction::resolve()->execute(
             data: ProfileData::resolve(
                 data: [
                     ...$request->validated(),
-                    'photo' => UploadImageAction::resolve()->execute($image, 'profiles'),
+                    'photo' => UploadImageAction::resolve()->execute($photo, 'profiles'),
                 ]
             ),
             user: $user
