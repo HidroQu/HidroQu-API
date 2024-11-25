@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Community extends Model
 {
@@ -16,17 +18,26 @@ class Community extends Model
         'user_id',
     ];
 
-    public function user()
+    /**
+     * @return BelongsTo<\App\Models\User>
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function comments()
+    /**
+     * @return HasMany<\App\Models\Comment>
+     */
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function getComments()
+    /**
+     * @return HasMany<\App\Models\Comment>
+     */
+    public function getComments(): HasMany
     {
         return $this->comments()->whereNull('comment_id');
     }

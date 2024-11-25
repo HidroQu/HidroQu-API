@@ -13,7 +13,7 @@ class ListUserCommunityController extends Controller
 
     public function __invoke(): JsonResponse
     {
-        $data = Community::query()->with(['user', 'comments'])->where('user_id', auth()->id())->paginate(10);
+        $data = Community::query()->with(['user'])->withCount('comments')->where('user_id', auth()->id())->paginate(10);
 
         return $this->resolveSuccessResponse(
             message: 'Successfully fetched list of user communities',

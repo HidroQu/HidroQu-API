@@ -3,6 +3,7 @@
 use App\Http\Controllers\Comment\StoreCommentController;
 use App\Http\Controllers\Community\DetailCommunityController;
 use App\Http\Controllers\Community\ListCommunityController;
+use App\Http\Controllers\Community\ListUserCommunityController;
 use App\Http\Controllers\Community\StoreCommunityController;
 use App\Http\Controllers\Diagnostic\DetailDiagnosticHistoryController;
 use App\Http\Controllers\Plant\DetailUserPlantController;
@@ -24,10 +25,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => 'communities'], function () {
         Route::get('/', ListCommunityController::class);
+        Route::post('/store', StoreCommunityController::class);
+        Route::get('/my-posts', ListUserCommunityController::class);
         Route::get('/{community:id}', DetailCommunityController::class);
         Route::post('/{community:id}/comment', StoreCommentController::class);
-        Route::post('/store', StoreCommunityController::class);
-        Route::get('/my-posts', ListCommunityController::class);
     });
 
     Route::group(['prefix' => 'profile'], function () {
