@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Article;
 use App\Enums\RoleType;
+use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Community;
 use App\Models\DiagnosticHistory;
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $mainUser = User::factory()->create([
             'name' => 'HidroQu',
             'email' => 'hidroqu@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => 'password',
         ])->syncRoles(RoleType::Admin);
 
         // Create additional users

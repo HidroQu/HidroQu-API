@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Diagnostic extends Model
@@ -14,6 +15,17 @@ class Diagnostic extends Model
         'cause',
         'solution',
     ];
+
+    protected $casts = [
+        'image_disease' => 'array',
+    ];
+
+    protected function imageDisease(): Attribute
+    {
+        return Attribute::make(
+            set: fn ($value) => empty($value) ? $this->image_disease : $value,
+        );
+    }
 
     public function diagnosticHistories()
     {

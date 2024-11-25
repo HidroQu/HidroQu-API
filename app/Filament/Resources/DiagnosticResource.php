@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\UploadImageAction;
 use App\Filament\Resources\DiagnosticResource\Pages;
 use App\Models\Diagnostic;
 use Filament\Forms;
@@ -9,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class DiagnosticResource extends Resource
 {
@@ -26,9 +28,15 @@ class DiagnosticResource extends Resource
                 Forms\Components\TextInput::make('disease_label')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('image_disease')
-                    ->required()
-                    ->columnSpanFull(),
+                Forms\Components\FileUpload::make('image_disease')
+                    ->columnSpanFull()
+                    ->multiple()
+                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                        return UploadImageAction::resolve()->execute(
+                            file: $file,
+                            path: 'diagnostics',
+                        );
+                    }),
                 Forms\Components\Textarea::make('indication')
                     ->required()
                     ->columnSpanFull(),
@@ -49,6 +57,7 @@ class DiagnosticResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('disease_label')
                     ->searchable(),
+                Tables\Columns\ImageColumn::make('image_disease'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

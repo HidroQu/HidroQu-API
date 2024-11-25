@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\UploadImageAction;
 use App\Filament\Resources\PlantResource\Pages;
 use App\Models\Plant;
 use Filament\Forms;
@@ -9,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class PlantResource extends Resource
 {
@@ -26,9 +28,14 @@ class PlantResource extends Resource
                 Forms\Components\TextInput::make('latin_name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('icon_plant')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\FileUpload::make('icon_plant')
+                    ->image()
+                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                        return UploadImageAction::resolve()->execute(
+                            file: $file,
+                            path: 'plants',
+                        );
+                    }),
                 Forms\Components\TextInput::make('fun_fact')
                     ->required()
                     ->maxLength(255),
@@ -52,10 +59,8 @@ class PlantResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('latin_name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('icon_plant')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('fun_fact')
-                    ->searchable(),
+                Tables\Columns\ImageColumn::make('icon_plant'),
+                Tables\Columns\TextColumn::make('fun_fact'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
