@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Community;
 use App\Models\DiagnosticHistory;
@@ -141,5 +142,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             });
         });
+
+        Article::query()->insert(Article::factory(20)->raw());
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Article\DetailArticleController;
+use App\Http\Controllers\Article\ListArticleController;
 use App\Http\Controllers\Comment\StoreCommentController;
 use App\Http\Controllers\Community\DetailCommunityController;
 use App\Http\Controllers\Community\ListCommunityController;
@@ -34,5 +36,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', DetailProfileController::class);
         Route::put('/update', UpdateProfileController::class);
+    });
+
+    Route::group(['prefix' => 'articles'], function () {
+        Route::get('/', ListArticleController::class);
+        Route::get('/{article:id}', DetailArticleController::class);
     });
 });
