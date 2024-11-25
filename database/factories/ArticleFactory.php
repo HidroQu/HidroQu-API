@@ -13,7 +13,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(),
             'image' => '',
-            'author' => User::query()->inRandomOrder()->firstOrFail()->id,
+            'user_id' => User::query()->inRandomOrder()->firstOrFail()->id,
         ];
     }
 }

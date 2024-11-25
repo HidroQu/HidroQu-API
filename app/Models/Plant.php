@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Plant extends Model
@@ -15,6 +16,14 @@ class Plant extends Model
         'fertilizer_type',
         'fun_fact',
     ];
+
+    protected function iconPlant(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn ($value) => empty($value) ? $this->icon_plant : $value,
+        );
+    }
 
     public function userPlants()
     {
