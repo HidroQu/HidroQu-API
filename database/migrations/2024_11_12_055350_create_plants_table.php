@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('planting_guide');
             $table->text('fertilizer_type');
             $table->string('fun_fact');
+            $table->integer('duration_plant');
             $table->timestamps();
         });
     }

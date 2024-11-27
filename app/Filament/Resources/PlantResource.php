@@ -30,6 +30,7 @@ class PlantResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('icon_plant')
                     ->image()
+                    ->columnSpanFull()
                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                         return UploadImageAction::resolve()->execute(
                             file: $file,
@@ -39,6 +40,9 @@ class PlantResource extends Resource
                 Forms\Components\TextInput::make('fun_fact')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('duration_plant')
+                    ->required()
+                    ->integer(),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -61,6 +65,8 @@ class PlantResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('icon_plant'),
                 Tables\Columns\TextColumn::make('fun_fact'),
+                Tables\Columns\TextColumn::make('duration_plant')
+                    ->suffix(' Days'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -15,6 +15,7 @@ class Plant extends Model
         'planting_guide',
         'fertilizer_type',
         'fun_fact',
+        'duration_plant',
     ];
 
     protected function iconPlant(): Attribute

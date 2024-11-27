@@ -20,6 +20,7 @@ class PlantSeeder extends Seeder
             'planting_guide' => 'Tanam di tempat yang banyak sinar matahari dan tanah yang subur.',
             'fertilizer_type' => 'Pupuk kompos atau kandang setiap 2 minggu.',
             'fun_fact' => 'Timun dapat membantu mengurangi kantung mata.',
+            'duration_plant' => 30,
         ]);
 
         Plant::create([
@@ -30,6 +31,7 @@ class PlantSeeder extends Seeder
             'planting_guide' => 'Tanam di tanah yang lembap dan tempat dengan sinar matahari parsial.',
             'fertilizer_type' => 'Pupuk cair atau kompos setiap bulan.',
             'fun_fact' => 'Kangkung tumbuh sangat cepat di lingkungan basah.',
+            'duration_plant' => 35,
         ]);
 
         Plant::create([
@@ -40,6 +42,7 @@ class PlantSeeder extends Seeder
             'planting_guide' => 'Tanam di tanah yang gembur dan tempat dengan sinar matahari parsial.',
             'fertilizer_type' => 'Pupuk kompos atau pupuk cair setiap 2 minggu.',
             'fun_fact' => 'Selada dapat membantu meningkatkan pencernaan dan menjaga hidrasi tubuh.',
+            'duration_plant' => 50,
         ]);
 
         Plant::create([
@@ -50,6 +53,7 @@ class PlantSeeder extends Seeder
             'planting_guide' => 'Tanam di tanah yang gembur dan beri sinar matahari langsung setiap hari.',
             'fertilizer_type' => 'Pupuk kompos atau pupuk organik setiap 2 minggu.',
             'fun_fact' => 'Tomat mengandung lycopene, yang baik untuk kesehatan jantung.',
+            'duration_plant' => 40,
         ]);
 
         Plant::create([
@@ -60,6 +64,7 @@ class PlantSeeder extends Seeder
             'planting_guide' => 'Tanam di tanah yang subur dan tempat dengan sinar matahari penuh.',
             'fertilizer_type' => 'Pupuk kompos atau pupuk kandang setiap 3 minggu.',
             'fun_fact' => 'Bayam dapat membantu menjaga kesehatan tulang dan mencegah anemia.',
+            'duration_plant' => 55,
         ]);
 
     }
