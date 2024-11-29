@@ -1,40 +1,33 @@
-# Laravel API Boilerplate
+# HidroQu API
 
 ![Laravel Version](https://img.shields.io/badge/Laravel-11.x-red)
 ![PHP Version](https://img.shields.io/badge/PHP-8.2-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-This repository provides a boilerplate for creating RESTful APIs using Laravel 11, with a focus on clean, maintainable code. It leverages Actions, Data Transfer Objects (DTOs), and best practices to ensure a scalable architecture.
-
-## Features
-
-- **RESTful API**: Preconfigured routes and controllers for building APIs.
-- **Actions**: Separate business logic into single-responsibility classes.
-- **DTOs**: Manage data flow between layers of the application.
-- **Clean Code**: Emphasis on readability, reusability, and performance.
-- **Laravel 11**: Leverage the latest features and enhancements in Laravel.
-
 ## Getting Started
 
 ### Prerequisites
 
-- PHP 8.2 or higher
-- Composer
+- Docker and Docker Compose installed
+- PHP 8.2 or higher (if not using Docker)
+- Composer (if not using Docker)
 - Laravel 11.x
 - MySQL or any other supported database
 
 ### Installation
 
+#### Option 1: Without Docker (Standard Installation)
+
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/holiq/api-boilerplate.git
+   git clone https://github.com/HidroQu/HidroQu-API.git
    ```
 
 2. **Navigate to the project directory:**
 
    ```bash
-   cd api-boilerplate
+   cd HidroQu-API
    ```
 
 3. **Install dependencies:**
@@ -63,23 +56,59 @@ This repository provides a boilerplate for creating RESTful APIs using Laravel 1
    php artisan migrate
    ```
 
-### Running the API
+7. **Start the development server:**
 
-Start the development server:
+   ```bash
+   php artisan serve
+   ```
 
-```bash
-php artisan serve
-```
+Access the API at: http://localhost:8000/api.
 
-The API will be accessible at `http://localhost:8000/api`.
+Access the API docs at: http://localhost:8000/request-docs.
 
-## Usage
+#### Option 2: Using Docker (Recommended for Containerized Environment)
 
-- **Routes**: Define your API routes in `routes/api.php`.
-- **Controllers**: Implement your API logic using controllers located in `app/Http/Controllers`.
-- **Actions**: Organize business logic in `app/Actions` and use command `make:action {name}` for generate the action.
-- **DTOs**: Use Data Transfer Objects in `app/DataTransferObjects` and use command `make:dto {name}` for generate the DTOs.
+Docker Compose is the recommended approach to set up the environment quickly, as it takes care of all the dependencies
+and services required for the application. This method abstracts away the need to install PHP, Composer, or a web server
+manually.
 
-## Contributing
+1. **Clone the repository:**
 
-Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
+   ```bash
+   git clone https://github.com/HidroQu/HidroQu-API.git
+   ```
+
+2. **Navigate to the project directory:**
+
+   ```bash
+   cd HidroQu-API
+   ```
+
+3. **Set up environment variables:**
+
+   Copy the `.env.example` file to `.env` and configure your database settings.
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Build and start the Docker containers:**
+
+   ```bash
+   docker-compose up --build
+   ```
+
+5. **Generate application key:**
+
+   ```bash
+   docker exec -it hidroqu-app php artisan key:generate
+   ```
+6. **Run migrations inside the container:**
+
+   ```bash
+   docker exec -it hidroqu-app php artisan migrate
+   ```
+
+Access the API at: http://localhost:3000/api.
+
+Access the API docs at: http://localhost:3000/request-docs.
