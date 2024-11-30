@@ -8,6 +8,7 @@ use App\Http\Controllers\Community\ListCommunityController;
 use App\Http\Controllers\Community\ListUserCommunityController;
 use App\Http\Controllers\Community\StoreCommunityController;
 use App\Http\Controllers\Diagnostic\DetailDiagnosticHistoryController;
+use App\Http\Controllers\Diagnostic\StoreDiagnosticController;
 use App\Http\Controllers\Plant\DetailUserPlantController;
 use App\Http\Controllers\Plant\ListPlantController;
 use App\Http\Controllers\Plant\ListUserPlantController;
@@ -22,6 +23,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/store', StoreUserPlantController::class);
         Route::get('/my-plants', ListUserPlantController::class);
         Route::get('/my-plants/{user_plant:id}', DetailUserPlantController::class);
+        Route::post('/my-plants/{user_plant:id}/diagnostics', StoreDiagnosticController::class);
         Route::get('/my-plants/{user_plant:id}/diagnostics/{diagnostic_history:id}', DetailDiagnosticHistoryController::class);
     });
 
