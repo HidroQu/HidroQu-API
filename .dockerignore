@@ -3,3 +3,4 @@
 /storage/framework/sessions/*
 /storage/framework/views/*
 /storage/framework/cache/*
+/node_modules
