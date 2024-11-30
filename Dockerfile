@@ -54,9 +54,7 @@ RUN echo 'pm.max_children = 128' >> /usr/local/etc/php-fpm.d/zz-docker.conf && \
 # Add Caddyfile
 COPY Caddyfile /etc/caddy/Caddyfile
 
-# Back to www-data
-USER www-data
-
+# Expose port for PHP-FPM and Caddy
 EXPOSE 9000 3000
 
 CMD ["sh", "-c", "php-fpm -y /usr/local/etc/php-fpm.conf -R & caddy run --config /etc/caddy/Caddyfile"]
