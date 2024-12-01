@@ -26,7 +26,7 @@ class ArticleResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\RichEditor::make('content')
+                Forms\Components\Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
