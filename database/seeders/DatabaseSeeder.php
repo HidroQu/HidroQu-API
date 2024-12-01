@@ -57,11 +57,11 @@ class DatabaseSeeder extends Seeder
 
         // Insert DiagnosticHistories
         DiagnosticHistory::query()->insert([
-            ['user_plant_id' => 1, 'diagnostic_id' => 1, 'diagnosis_date' => $now->copy()->subDays(4)],
-            ['user_plant_id' => 1, 'diagnostic_id' => 2, 'diagnosis_date' => $now->copy()->subDays(3)],
-            ['user_plant_id' => 1, 'diagnostic_id' => 1, 'diagnosis_date' => $now],
-            ['user_plant_id' => 2, 'diagnostic_id' => 2, 'diagnosis_date' => $now->copy()->subDays(5)],
-            ['user_plant_id' => 2, 'diagnostic_id' => 1, 'diagnosis_date' => $now->copy()->subDays(2)],
+            ['user_plant_id' => 1, 'diagnostic_id' => 1, 'diagnostic_date' => $now->copy()->subDays(4)],
+            ['user_plant_id' => 1, 'diagnostic_id' => 2, 'diagnostic_date' => $now->copy()->subDays(3)],
+            ['user_plant_id' => 1, 'diagnostic_id' => 1, 'diagnostic_date' => $now],
+            ['user_plant_id' => 2, 'diagnostic_id' => 2, 'diagnostic_date' => $now->copy()->subDays(5)],
+            ['user_plant_id' => 2, 'diagnostic_id' => 1, 'diagnostic_date' => $now->copy()->subDays(2)],
         ]);
 
         // Insert a specific Community post

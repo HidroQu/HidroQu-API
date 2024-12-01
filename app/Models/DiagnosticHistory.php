@@ -9,7 +9,7 @@ class DiagnosticHistory extends Model
     protected $fillable = [
         'user_plant_id',
         'diagnostic_id',
-        'diagnosis_date',
+        'diagnostic_date',
     ];
 
     public function userPlant()

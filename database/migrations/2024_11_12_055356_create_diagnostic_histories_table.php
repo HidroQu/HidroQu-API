@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_plant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('diagnostic_id')->constrained()->cascadeOnDelete();
-            $table->dateTime('diagnosis_date');
+            $table->dateTime('diagnostic_date');
             $table->timestamps();
         });
     }
