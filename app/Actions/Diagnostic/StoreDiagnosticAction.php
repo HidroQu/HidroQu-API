@@ -2,7 +2,7 @@
 
 namespace App\Actions\Diagnostic;
 
-use App\DataTransferObjects\DiagnosticData;
+use App\DataTransferObjects\Diagnostic\DiagnosticData;
 use App\Models\DiagnosticHistory;
 use Holiq\ActionData\Foundation\Action;
 

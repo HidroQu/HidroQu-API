@@ -9,6 +9,7 @@ class DiagnosticHistory extends Model
     protected $fillable = [
         'user_plant_id',
         'diagnostic_id',
+        'diagnostic_image',
         'diagnostic_date',
     ];
 

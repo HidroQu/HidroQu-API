@@ -57,11 +57,31 @@ class DatabaseSeeder extends Seeder
 
         // Insert DiagnosticHistories
         DiagnosticHistory::query()->insert([
-            ['user_plant_id' => 1, 'diagnostic_id' => 1, 'diagnostic_date' => $now->copy()->subDays(4)],
-            ['user_plant_id' => 1, 'diagnostic_id' => 2, 'diagnostic_date' => $now->copy()->subDays(3)],
-            ['user_plant_id' => 1, 'diagnostic_id' => 1, 'diagnostic_date' => $now],
-            ['user_plant_id' => 2, 'diagnostic_id' => 2, 'diagnostic_date' => $now->copy()->subDays(5)],
-            ['user_plant_id' => 2, 'diagnostic_id' => 1, 'diagnostic_date' => $now->copy()->subDays(2)],
+            [
+                'user_plant_id' => 1, 'diagnostic_id' => 1,
+                'diagnostic_image' => 'https://storage.googleapis.com/hidroqu/diagnostics/sehat-3.jpg',
+                'diagnostic_date' => $now->copy()->subDays(4),
+            ],
+            [
+                'user_plant_id' => 1, 'diagnostic_id' => 2,
+                'diagnostic_image' => 'https://storage.googleapis.com/hidroqu/diagnostics/nitrogen-2.jpg',
+                'diagnostic_date' => $now->copy()->subDays(3),
+            ],
+            [
+                'user_plant_id' => 1, 'diagnostic_id' => 1,
+                'diagnostic_image' => 'https://storage.googleapis.com/hidroqu/diagnostics/sehat-3.jpg',
+                'diagnostic_date' => $now,
+            ],
+            [
+                'user_plant_id' => 2, 'diagnostic_id' => 2,
+                'diagnostic_image' => 'https://storage.googleapis.com/hidroqu/diagnostics/nitrogen-2.jpg',
+                'diagnostic_date' => $now->copy()->subDays(5),
+            ],
+            [
+                'user_plant_id' => 2, 'diagnostic_id' => 1,
+                'diagnostic_image' => 'https://storage.googleapis.com/hidroqu/diagnostics/sehat-3.jpg',
+                'diagnostic_date' => $now->copy()->subDays(2),
+            ],
         ]);
 
         // Insert a specific Community post

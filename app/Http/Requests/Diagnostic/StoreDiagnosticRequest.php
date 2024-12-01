@@ -24,6 +24,7 @@ class StoreDiagnosticRequest extends FormRequest
         return [
             'user_plant_id' => 'required|exists:user_plants,id',
             'diagnostic_id' => 'required|exists:diagnostics,id',
+            'diagnostic_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'diagnostic_date' => 'required|date',
         ];
     }
