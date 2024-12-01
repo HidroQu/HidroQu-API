@@ -22,7 +22,7 @@ class StoreDiagnosticRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_plant_id' => 'required|exists:plants,id',
+            'user_plant_id' => 'required|exists:user_plants,id',
             'diagnostic_id' => 'required|exists:diagnostics,id',
             'diagnostic_date' => 'required|date',
         ];
