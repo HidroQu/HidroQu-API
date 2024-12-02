@@ -29,11 +29,15 @@ return Application::configure(basePath: dirname(__DIR__))
                     default => HttpStatus::InternalServerError,
                 };
 
-                $message = $status === HttpStatus::InternalServerError
+                $isProduction = app()->isProduction();
+
+                $message = ($status === HttpStatus::InternalServerError && $isProduction)
                     ? 'Internal server error, cannot processed the request.'
                     : $e->getMessage();
 
-                $errors = $e instanceof ValidationException ? $e->errors() : [];
+                $errors = $isProduction
+                    ? ($e instanceof ValidationException ? $e->errors() : [])
+                    : ($e instanceof ValidationException ? $e->errors() : $e->getTrace());
 
                 return response()->json(
                     data: [
