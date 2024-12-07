@@ -8,4 +8,4 @@ Route::get(uri: '/', action: function () {
 })->name('home');
 
 Route::get('reset-password', [ResetPasswordController::class, 'index'])->name('password.reset');
-Route::post('reset-password', [ResetPasswordController::class, 'process'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'process']);
