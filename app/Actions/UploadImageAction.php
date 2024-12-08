@@ -14,11 +14,21 @@ readonly class UploadImageAction extends Action
             return null;
         }
 
+        /** @var string $projectId */
+        $projectId = config('gcs.project_id');
+
+        /** @var string $key */
+        $key = config('gcs.key');
+
+        /** @var string $bucket */
+        $bucket = config('gcs.bucket');
+
         $storage = new StorageClient([
-            'keyFilePath' => public_path('storage/hidroqu-84824d755e4b.json'),
+            'keyFilePath' => public_path($key),
+            'projectId' => $projectId,
         ]);
 
-        $bucket = $storage->bucket('hidroqu');
+        $bucket = $storage->bucket($bucket);
 
         $fileName = $path.'/'.uuid_create().'.'.$file->getClientOriginalExtension();
 
