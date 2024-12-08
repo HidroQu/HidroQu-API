@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use BezhanSalleh\FilamentShield\Support\Utils;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -23,14 +24,17 @@ class ShieldSeeder extends Seeder
 
     protected static function makeRolesWithPermissions(string $rolesWithPermissions): void
     {
-        if (! blank($rolePlusPermissions = json_decode($rolesWithPermissions, true))) {
-            /** @var Model $roleModel */
+        /** @var array<string, mixed> $rolePlusPermissions */
+        $rolePlusPermissions = json_decode($rolesWithPermissions, true);
+
+        if (! blank($rolePlusPermissions)) {
+            /** @var \Spatie\Permission\Models\Role $roleModel */
             $roleModel = Utils::getRoleModel();
             /** @var Model $permissionModel */
             $permissionModel = Utils::getPermissionModel();
 
             foreach ($rolePlusPermissions as $rolePlusPermission) {
-                $role = $roleModel::firstOrCreate([
+                $role = $roleModel::query()->firstOrCreate([
                     'name' => $rolePlusPermission['name'],
                     'guard_name' => $rolePlusPermission['guard_name'],
                 ]);
