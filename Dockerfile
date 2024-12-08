@@ -37,6 +37,9 @@ COPY . .
 # Intsall application
 RUN composer install --prefer-dist --no-dev
 RUN php artisan optimize
+RUN php artisan storage:link
+RUN php artisan filament:optimize
+RUN php artisan icons:cache
 
 # Set permissions for the web server
 RUN chown -R www-data:www-data /var/www/html
@@ -57,5 +60,5 @@ COPY Caddyfile /etc/caddy/Caddyfile
 # Expose port for PHP-FPM and Caddy
 EXPOSE 9000 3000
 
+# Run the PHP-FPM and Caddy
 CMD ["sh", "-c", "php-fpm -y /usr/local/etc/php-fpm.conf -R & caddy run --config /etc/caddy/Caddyfile"]
-
