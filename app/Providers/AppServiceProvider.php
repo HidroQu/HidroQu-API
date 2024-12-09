@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Filament\Support\Facades\FilamentView;
+//use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,9 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        FilamentView::registerRenderHook(
-            'panels::head.start',
-            fn (): string => '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">',
-        );
+//        FilamentView::registerRenderHook(
+//            'panels::head.start',
+//            fn (): string => '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">',
+//        );
     }
 }

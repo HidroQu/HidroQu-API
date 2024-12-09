@@ -14,7 +14,7 @@ class ListArticleController extends Controller
 
     public function __invoke(Request $request): JsonResponse
     {
-        $articles = Article::query()->with(['user'])->latest();
+        $articles = Article::query()->latest();
 
         if ($request->filled('search')) {
             $articles->where('title', 'like', '%'.$request->search.'%');
