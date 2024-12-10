@@ -1,4 +1,6 @@
+.git/
 /vendor
+/bootstrap/cache*
 /storage/logs/*
 /storage/framework/sessions/*
 /storage/framework/views/*

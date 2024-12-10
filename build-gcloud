@@ -1,8 +1,13 @@
 #!/bin/bash
 
+PROJECT_ID="hidroqu"
+REGION="asia-southeast2"
+REPO_NAME="hidroqu-image"
+SERVICE_NAME="hidroqu-api"
+
 echo "Building docker image..."
 
-docker build -t asia-southeast2-docker.pkg.dev/hidroqu/hidroqu-image/hidroqu-api:latest .
+docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:latest .
 
 echo "Build image completed!"
 
@@ -10,7 +15,29 @@ sleep 3
 
 echo "Push image into artifact..."
 
-docker push asia-southeast2-docker.pkg.dev/hidroqu/hidroqu-image/hidroqu-api:latest
+docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:latest
 
 echo "Image pushed into artifact!"
 
+sleep 3
+
+echo "Getting the latest image..."
+
+IMAGE_DIGEST=$(gcloud artifacts docker images describe $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:latest \
+    --format="get(image_summary.digest)")
+
+IMAGE_URI="$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME@$IMAGE_DIGEST"
+
+echo "Latest image: $IMAGE_URI"
+
+sleep 3
+
+echo "Deploying the latest image to Cloud Run..."
+
+gcloud run deploy $SERVICE_NAME \
+    --image=$IMAGE_URI \
+    --region=$REGION \
+    --platform=managed \
+    --allow-unauthenticated
+
+echo "Deployment completed successfully!"
