@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="application-name" content="{{ config('app.name') }}" />
@@ -7,6 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="{{ asset('logo-circle.svg') }}">
     {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
+    <meta name="description"
+          content="Solusi Hidroponik Cerdas untuk Memantau Kesehatan Tanaman melalui Pemindaian Daun melalui HidroQu AI. Identifikasi kekurangan nutrisi dan optimalkan budidaya hidroponik Anda.">
+    <meta name="og:title" content="HidroQu">
+    <meta name="og:description"
+          content="Solusi Hidroponik Cerdas untuk Memantau Kesehatan Tanaman melalui Pemindaian Daun melalui HidroQu AI. Identifikasi kekurangan nutrisi dan optimalkan budidaya hidroponik Anda.">
+    <meta name="og:title" content="HidroQu">
+    <meta name="og:image" content="{{ asset('about.jpg') }}">
+    <meta name="og:url" content="{{ config('app.url') }}">
+    <meta name="og:type" content="product">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HidroQu">
+    <meta name="twitter:description" content="Solusi Hidroponik Cerdas untuk Memantau Kesehatan Tanaman melalui Pemindaian Daun melalui HidroQu AI. Identifikasi kekurangan nutrisi dan optimalkan budidaya hidroponik Anda.">
+    <meta name="twitter:image" content="{{ asset('about.jpg') }}">
+    <meta name="twitter:url" content={{ config('app.url') }}>
 
     <title>{{ config('app.name') }}</title>
 
@@ -17,7 +31,8 @@
 </head>
 
 <body class="antialiased">
-    <header class="bg-[#086B5A]/85 fixed w-full top-0 z-20 px-4 text-white backdrop-blur-md sm:px-6 lg:px-8">
+    <header
+        class="bg-[#086B5A]/85 fixed w-full h-20 content-center top-0 z-20 px-4 text-white backdrop-blur-md sm:px-6 lg:px-8">
         <nav class="navbar justify-between">
             <div class="flex items-center">
                 <img class="w-10 mr-1" src="{{ asset('logo-transparent.svg') }}" alt="HidroQu Logo">
@@ -26,10 +41,10 @@
 
             <div class="flex items-center">
                 <div class="hidden items-center gap-2 lg:flex">
-                    <button class="btn btn-ghost font-black">Home</button>
-                    <button class="btn btn-ghost">About</button>
-                    <button class="btn btn-ghost">Features</button>
-                    <button class="btn btn-ghost">Contact Us</button>
+                    <a href="#home" class="btn btn-ghost font-black">Beranda</a>
+                    <a href="#about" class="btn btn-ghost">Tentang</a>
+                    <a href="#features" class="btn btn-ghost">Fitur-fitur</a>
+                    <a href="#download" class="btn btn-ghost">Download</a>
                 </div>
 
                 <div class="block lg:hidden" x-data="{ open: false }">
