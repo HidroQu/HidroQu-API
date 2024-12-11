@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get(uri: '/', action: function () {
     return view('home');
-})->name('home');
+})->name('home')->withoutMiddleware('web');
 
 Route::get('reset-password', [ResetPasswordController::class, 'index'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'process']);
