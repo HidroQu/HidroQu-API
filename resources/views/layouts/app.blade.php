@@ -18,7 +18,8 @@
     <meta name="og:type" content="product">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="HidroQu">
-    <meta name="twitter:description" content="Solusi Hidroponik Cerdas untuk Memantau Kesehatan Tanaman melalui Pemindaian Daun melalui HidroQu AI. Identifikasi kekurangan nutrisi dan optimalkan budidaya hidroponik Anda.">
+    <meta name="twitter:description"
+          content="Solusi Hidroponik Cerdas untuk Memantau Kesehatan Tanaman melalui Pemindaian Daun melalui HidroQu AI. Identifikasi kekurangan nutrisi dan optimalkan budidaya hidroponik Anda.">
     <meta name="twitter:image" content="{{ asset('about.jpg') }}">
     <meta name="twitter:url" content={{ config('app.url') }}>
 
@@ -63,11 +64,14 @@
                          aria-hidden="true" x-show="open">
                     </div>
                     <div
-                        class="absolute inset-x-0 top-full z-20 mx-4 mt-0 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg font-medium uppercase tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 sm:mx-6 lg:mx-8"
+                        class="absolute inset-x-0 top-full z-20 mx-4 mt-0 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg font-medium tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 sm:mx-6 lg:mx-8"
                         id="navbar" tabindex="-1" x-show="open">
-                        <h1 class="divider my-2 text-xl font-medium">HidroQu</h1>
-                        <ul class="menu w-full rounded-box">
-                            <li><a href="">Contact US</a></li>
+                        <h1 class="my-2 text-xl font-bold text-primary">HidroQu</h1>
+                        <ul class="menu w-full rounded-box uppercase text-base-content" @click="open = !open">
+                            <li><a href="#home">Beranda</a></li>
+                            <li><a href="#about">Tentang</a></li>
+                            <li><a href="#features">Fitur-fitur</a></li>
+                            <li><a href="#download">Download</a></li>
                         </ul>
                     </div>
                 </div>
