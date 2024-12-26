@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-//use Filament\Support\Facades\FilamentView;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,7 +13,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Request::macro('hasValidSignature', function ($absolute = true, array $ignoreQuery = []) {
+            $https = clone $this;
+            $https->server->set('HTTPS', 'on');
+
+            $http = clone $this;
+            $http->server->set('HTTPS', 'off');
+
+            return URL::hasValidSignature($https, $absolute, $ignoreQuery)
+                || \URL::hasValidSignature($http, $absolute, $ignoreQuery);
+        });
     }
 
     /**
@@ -20,9 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-//        FilamentView::registerRenderHook(
-//            'panels::head.start',
-//            fn (): string => '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">',
-//        );
+        if (app()->isProduction()) {
+            URL::forceScheme('https');
+        }
     }
 }
