@@ -1,6 +1,7 @@
 FROM php:8.3-fpm-alpine
 
 # Install system dependencies
+RUN apk upgrade
 RUN apk add --no-cache \
     icu-dev \
     git \
