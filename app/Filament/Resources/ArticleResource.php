@@ -31,13 +31,13 @@ class ArticleResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
-                    ->columnSpanFull()
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return UploadImageAction::resolve()->execute(
-                            file: $file,
-                            path: 'articles',
-                        );
-                    }),
+                    ->columnSpanFull(),
+                    // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                    //     return UploadImageAction::resolve()->execute(
+                    //         file: $file,
+                    //         path: 'articles',
+                    //     );
+                    // }),
             ]);
     }
 

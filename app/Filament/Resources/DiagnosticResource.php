@@ -30,13 +30,13 @@ class DiagnosticResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image_disease')
                     ->columnSpanFull()
-                    ->multiple()
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return UploadImageAction::resolve()->execute(
-                            file: $file,
-                            path: 'diagnostics',
-                        );
-                    }),
+                    ->multiple(),
+                    // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                    //     return UploadImageAction::resolve()->execute(
+                    //         file: $file,
+                    //         path: 'diagnostics',
+                    //     );
+                    // }),
                 Forms\Components\Textarea::make('indication')
                     ->required()
                     ->columnSpanFull(),

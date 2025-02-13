@@ -30,13 +30,13 @@ class PlantResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('icon_plant')
                     ->image()
-                    ->columnSpanFull()
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return UploadImageAction::resolve()->execute(
-                            file: $file,
-                            path: 'plants',
-                        );
-                    }),
+                    ->columnSpanFull(),
+                    // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                    //     return UploadImageAction::resolve()->execute(
+                    //         file: $file,
+                    //         path: 'plants',
+                    //     );
+                    // }),
                 Forms\Components\TextInput::make('fun_fact')
                     ->required()
                     ->maxLength(255),

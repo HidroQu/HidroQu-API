@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use Google\Cloud\Storage\StorageClient;
+// use Google\Cloud\Storage\StorageClient;
 use Holiq\ActionData\Foundation\Action;
 use Illuminate\Http\UploadedFile;
 
@@ -14,34 +14,40 @@ readonly class UploadImageAction extends Action
             return null;
         }
 
+        $name = time() . '.' . $file->getClientOriginalExtension();
+
+        $file->move(public_path('images/'. $path), $name);
+
+        return asset('images/' .$path.'/' . $name);
+
         /** @var string $projectId */
-        $projectId = config('gcs.project_id');
+        // $projectId = config('gcs.project_id');
 
         /** @var string $key */
-        $key = config('gcs.key');
+        // $key = config('gcs.key');
 
         /** @var string $bucket */
-        $bucket = config('gcs.bucket');
+        // $bucket = config('gcs.bucket');
 
-        $storage = new StorageClient([
-            'keyFilePath' => public_path($key),
-            'projectId' => $projectId,
-        ]);
+        // $storage = new StorageClient([
+        //     'keyFilePath' => public_path($key),
+        //     'projectId' => $projectId,
+        // ]);
 
-        $bucket = $storage->bucket($bucket);
+        // $bucket = $storage->bucket($bucket);
 
-        $fileName = $path.'/'.uuid_create().'.'.$file->getClientOriginalExtension();
+        // $fileName = $path.'/'.uuid_create().'.'.$file->getClientOriginalExtension();
 
         /** @var string $filePath */
-        $filePath = fopen($file->getRealPath(), 'r');
+        // $filePath = fopen($file->getRealPath(), 'r');
 
-        $bucket->upload(
-            $filePath,
-            [
-                'name' => $fileName,
-            ]
-        );
+        // $bucket->upload(
+        //     $filePath,
+        //     [
+        //         'name' => $fileName,
+        //     ]
+        // );
 
-        return "https://storage.googleapis.com/hidroqu/$fileName";
+        // return "https://storage.googleapis.com/hidroqu/$fileName";
     }
 }
