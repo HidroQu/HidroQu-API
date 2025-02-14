@@ -14,11 +14,11 @@ readonly class UploadImageAction extends Action
             return null;
         }
 
-        $name = time() . '.' . $file->getClientOriginalExtension();
+        $name = time().'.'.$file->getClientOriginalExtension();
 
-        $file->move(public_path('images/'. $path), $name);
+        $file->move(public_path('images/'.$path), $name);
 
-        return asset('images/' .$path.'/' . $name);
+        return asset('images/'.$path.'/'.$name);
 
         /** @var string $projectId */
         // $projectId = config('gcs.project_id');

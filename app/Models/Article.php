@@ -21,8 +21,7 @@ class Article extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value,
-            set: fn ($value) => empty($value) ? $this->image : $value,
+            set: fn ($value) => empty($value) ? $this->image : asset('storage/'.$value),
         );
     }
 

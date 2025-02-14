@@ -32,12 +32,12 @@ class ArticleResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->columnSpanFull(),
-                    // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                    //     return UploadImageAction::resolve()->execute(
-                    //         file: $file,
-                    //         path: 'articles',
-                    //     );
-                    // }),
+                // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                //     return UploadImageAction::resolve()->execute(
+                //         file: $file,
+                //         path: 'articles',
+                //     );
+                // }),
             ]);
     }
 
@@ -63,7 +63,12 @@ class ArticleResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->mutateRecordDataUsing(function (array $data) {
+                        $data['image'] = basename($data['image']);
+
+                        return $data;
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

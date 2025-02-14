@@ -31,12 +31,12 @@ class PlantResource extends Resource
                 Forms\Components\FileUpload::make('icon_plant')
                     ->image()
                     ->columnSpanFull(),
-                    // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                    //     return UploadImageAction::resolve()->execute(
-                    //         file: $file,
-                    //         path: 'plants',
-                    //     );
-                    // }),
+                // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                //     return UploadImageAction::resolve()->execute(
+                //         file: $file,
+                //         path: 'plants',
+                //     );
+                // }),
                 Forms\Components\TextInput::make('fun_fact')
                     ->required()
                     ->maxLength(255),
@@ -80,7 +80,12 @@ class PlantResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->mutateRecordDataUsing(function (array $data) {
+                        $data['icon_plant'] = basename($data['icon_plant']);
+
+                        return $data;
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

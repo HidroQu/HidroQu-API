@@ -31,12 +31,12 @@ class DiagnosticResource extends Resource
                 Forms\Components\FileUpload::make('image_disease')
                     ->columnSpanFull()
                     ->multiple(),
-                    // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                    //     return UploadImageAction::resolve()->execute(
-                    //         file: $file,
-                    //         path: 'diagnostics',
-                    //     );
-                    // }),
+                // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                //     return UploadImageAction::resolve()->execute(
+                //         file: $file,
+                //         path: 'diagnostics',
+                //     );
+                // }),
                 Forms\Components\Textarea::make('indication')
                     ->required()
                     ->columnSpanFull(),
@@ -71,7 +71,18 @@ class DiagnosticResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->mutateRecordDataUsing(function (array $data) {
+                        $records = [];
+                        $images = $data['image_disease'];
+                        foreach ($images as $image) {
+                            $records[] = basename($image);
+                        }
+
+                        $data['image_disease'] = $records;
+
+                        return $data;
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -21,8 +21,7 @@ class Plant extends Model
     protected function iconPlant(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value,
-            set: fn ($value) => empty($value) ? $this->icon_plant : $value,
+            set: fn ($value) => empty($value) ? $this->icon_plant : asset('storage/'.$value),
         );
     }
 

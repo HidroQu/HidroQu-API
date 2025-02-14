@@ -23,7 +23,18 @@ class Diagnostic extends Model
     protected function imageDisease(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => empty($value) ? json_encode($this->image_disease) : json_encode($value),
+            set: function ($value) {
+                if (empty($value)) {
+                    return json_encode($this->image_disease);
+                } else {
+                    $data = [];
+                    foreach ($value as $image) {
+                        $data[] = asset('storage/'.$image);
+                    }
+
+                    return json_encode($data);
+                }
+            },
         );
     }
 
